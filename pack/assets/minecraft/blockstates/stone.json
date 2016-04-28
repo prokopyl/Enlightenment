@@ -1,0 +1,12 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "stone" },
+            { "model": "stone_mirrored" },
+            { "model": "stone", "y": 180 },
+            { "model": "stone_mirrored", "y": 180 },
+            { "model": "stone", "x": 180 },
+            { "model": "stone_mirrored", "x": 180 }
+        ]
+    }
+}
