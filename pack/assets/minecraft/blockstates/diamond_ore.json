@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "diamond_ore" },
+            { "model": "diamond_ore_mirrored" },
+            { "model": "diamond_ore", "y": 180 },
+            { "model": "diamond_ore_mirrored", "y": 180 },
+            { "model": "diamond_ore", "x": 180 },
+            { "model": "diamond_ore_mirrored", "x": 180 }
+        ]
+    }
+}
+ 

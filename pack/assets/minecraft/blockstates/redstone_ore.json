@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "redstone_ore" },
+            { "model": "redstone_ore_mirrored" },
+            { "model": "redstone_ore", "y": 180 },
+            { "model": "redstone_ore_mirrored", "y": 180 },
+            { "model": "redstone_ore", "x": 180 },
+            { "model": "redstone_ore_mirrored", "x": 180 }
+        ]
+    }
+}
+ 

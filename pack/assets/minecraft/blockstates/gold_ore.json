@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "gold_ore" },
+            { "model": "gold_ore_mirrored" },
+            { "model": "gold_ore", "y": 180 },
+            { "model": "gold_ore_mirrored", "y": 180 },
+            { "model": "gold_ore", "x": 180 },
+            { "model": "gold_ore_mirrored", "x": 180 }
+        ]
+    }
+}
+ 
