@@ -1,0 +1,13 @@
+{
+    "variants": {
+        "normal": [
+            { "model": "lapis_ore" },
+            { "model": "lapis_ore_mirrored" },
+            { "model": "lapis_ore", "y": 180 },
+            { "model": "lapis_ore_mirrored", "y": 180 },
+            { "model": "lapis_ore", "x": 180 },
+            { "model": "lapis_ore_mirrored", "x": 180 }
+        ]
+    }
+}
+ 
