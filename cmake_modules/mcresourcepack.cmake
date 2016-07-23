@@ -113,7 +113,7 @@ endfunction()
 macro(build_destination _VAR _SOURCE _EXTRA)
     
     get_filename_component("${_VAR}_SOURCE_NAME" "${_SOURCE}" NAME_WE)
-    get_filename_component("${_VAR}_SOURCE_DIR" "${_SOURCE}" DIRECTORY)
+    get_filename_component("${_VAR}_SOURCE_DIR" "${_SOURCE}" PATH)
     
     set(${_VAR} "${${_VAR}_SOURCE_DIR}/build-${${_VAR}_SOURCE_NAME}${_EXTRA}.png")
     
@@ -122,7 +122,7 @@ endmacro()
 function(add_xcf_file _SOURCE _DESTINATION _COMMENT _EXTRA_BUILD)
     
     get_filename_component(DESTINATION_NAME "${_DESTINATION}" NAME)
-    get_filename_component(DESTINATION_DIR "${_DESTINATION}" DIRECTORY)
+    get_filename_component(DESTINATION_DIR "${_DESTINATION}" PATH)
     
     build_destination(BUILD_DESTINATION "${_SOURCE}" "${_EXTRA_BUILD}")
     
@@ -180,7 +180,7 @@ function(add_texture)
             list(APPEND BUILD_DESTINATIONS "${CMAKE_CURRENT_LIST_DIR}/${BUILD_DESTINATION}")
         else()
             get_filename_component(DESTINATION_NAME "${DST}" NAME)
-            get_filename_component(DESTINATION_DIR "${DST}" DIRECTORY)
+            get_filename_component(DESTINATION_DIR "${DST}" PATH)
             
             install(FILES "${SRC}" DESTINATION "pack/assets/minecraft/textures/${DESTINATION_DIR}" RENAME "${DESTINATION_NAME}")
         endif()
