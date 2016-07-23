@@ -41,11 +41,9 @@ function(list_xcf_layers_raw _FILE _OUTPUT_VAR)
     # + 32x32+0+0 RGB-alpha Normal/group |Borders
     
     foreach(line ${INFO_LIST})
-        if(NOT "${line}" MATCHES "^(\\-|\\+) ([^ ]* )([^ ]* )([^ /]*(\\/[0-9%]+)? )(\\|.*\\||\\|)?(.*)$")
-            continue()
+        if("${line}" MATCHES "^(\\-|\\+) ([^ ]* )([^ ]* )([^ /]*(\\/[0-9%]+)? )(\\|.*\\||\\|)?(.*)$")
+            list(APPEND LAYERS "${CMAKE_MATCH_1}${CMAKE_MATCH_7}")
         endif()
-        
-        list(APPEND LAYERS "${CMAKE_MATCH_1}${CMAKE_MATCH_7}")
         
     endforeach()
     

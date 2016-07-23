@@ -1,5 +1,5 @@
 project(Enlightenment NONE)
-cmake_minimum_required(VERSION 3.3) 
+cmake_minimum_required(VERSION 2.8) 
 
 include(cmake_modules/mcresourcepack.cmake)
 include(cmake_modules/mcresourcepack_ctm.cmake)
