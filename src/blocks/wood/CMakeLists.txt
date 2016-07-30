@@ -32,14 +32,15 @@ add_texture(TARGET wood_log_top
         blocks/log_spruce_top.png
 ) 
 
-add_texture(TARGET wood_planks
-    SOURCE 
-        planks_acacia.xcf 
-        planks_big_oak.xcf 
-        planks_birch.xcf 
-        planks_jungle.xcf 
-        planks_oak.xcf 
-        planks_spruce.xcf
+add_texture_variants(TARGET wood_planks
+    SOURCE planks.xcf
+    VARIANTS
+        _acacia$
+        _bigoak$
+        _birch$
+        _jungle$
+        _oak$
+        _spruce$
     DESTINATION 
         blocks/planks_acacia.png
         blocks/planks_big_oak.png

@@ -5,8 +5,9 @@ add_texture(TARGET stone_slab
     SOURCE stone_slab.xcf stone_slab_side.xcf 
     DESTINATION blocks/stone_slab_top.png blocks/stone_slab_side.png) 
     
-add_texture(TARGET stonebrick
-    SOURCE stonebrick.xcf stonebrick_cracked.xcf stonebrick_mossy.xcf
+add_texture_variants(TARGET stonebrick
+    SOURCE stonebrick.xcf
+    VARIANTS ^$ cracked$ mossy$
     DESTINATION blocks/stonebrick.png blocks/stonebrick_cracked.png blocks/stonebrick_mossy.png) 
     
 add_models(block models/double_stone_top_mirrored.json)
