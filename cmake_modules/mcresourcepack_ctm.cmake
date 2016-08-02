@@ -197,3 +197,31 @@ function(write_ctm_files _TARGET _FILE)
     endforeach()
     
 endfunction()
+
+function(add_random_texture)
+    
+    set(OVA TARGET SOURCE PROPERTIES_FILE)
+    set(MVA VARIANTS)
+            
+    cmake_parse_arguments(_ "" "${OVA}" "${MVA}" ${ARGN})
+    
+    list(LENGTH __VARIANTS _VARIANTS_LEN)
+    math(EXPR _VARIANTS_LEN "${_VARIANTS_LEN} - 1")
+    
+    set(DESTINATIONS "")
+    
+    foreach(i RANGE ${_VARIANTS_LEN})
+        
+        list(APPEND DESTINATIONS "../mcpatcher/ctm/${__TARGET}/${i}.png")
+        
+    endforeach()
+    
+    add_texture_variants(TARGET "${__TARGET}"
+        SOURCE "${__SOURCE}"
+        VARIANTS ${__VARIANTS}
+        DESTINATION ${DESTINATIONS}
+    )
+    
+    install(FILES "${CMAKE_CURRENT_LIST_DIR}/${__PROPERTIES_FILE}" DESTINATION "pack/assets/minecraft/mcpatcher/ctm/${__TARGET}/")
+    
+endfunction()

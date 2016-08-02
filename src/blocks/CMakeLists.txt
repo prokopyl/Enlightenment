@@ -15,3 +15,8 @@ add_simple_texture(cobblestone cobblestone.png blocks/cobblestone.png)
 add_texture(TARGET grass
     SOURCE grass_side.xcf grass_side_overlay.png grass_top.png
     DESTINATION blocks/grass_side.png blocks/grass_side_overlay.png blocks/grass_top.png)
+    
+add_random_texture(TARGET random_brick
+    PROPERTIES_FILE bricks.properties
+    SOURCE bricks.xcf
+    VARIANTS ^bricks1$ ^bricks2$ ^bricks3$ ^bricks4$ ^bricks5$)

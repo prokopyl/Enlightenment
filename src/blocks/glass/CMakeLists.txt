@@ -1,4 +1,5 @@
 add_simple_texture(glass glass.xcf blocks/glass.png)
+add_simple_texture(glass_pane glass_pane_top.xcf blocks/glass_pane_top.png)
 
 add_ctm_texture(TARGET glass_clear
     SOURCE glass.xcf
