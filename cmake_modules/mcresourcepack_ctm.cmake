@@ -62,7 +62,7 @@ endfunction()
 function(add_ctm_texture)
 
     set(OVA TARGET SOURCE PROPERTIES_FILE ${CTM_PARTS})
-    set(MVA VARIANTS)
+    set(MVA VARIANTS ADD_LAYERS REMOVE_LAYERS)
             
     cmake_parse_arguments(_ "" "${OVA}" "${MVA}" ${ARGN})
     
@@ -99,8 +99,8 @@ function(add_ctm_texture)
             CORNER_BOTTOMRIGHT ${__CORNER_BOTTOMRIGHT}
             CORNER_TOPLEFT ${__CORNER_TOPLEFT}
             CORNER_TOPRIGHT ${__CORNER_TOPRIGHT}
-            ADDLAYERS ${VARIANT}
-            REMOVELAYERS ${remaining_variants}
+            ADDLAYERS ${VARIANT} ${__ADD_LAYERS}
+            REMOVELAYERS ${remaining_variants} ${__REMOVE_LAYERS}
         )
         
         math(EXPR file_id "${file_id} + 1")
@@ -153,8 +153,8 @@ function(add_ctm_texture_base _LAYERS _I)
             REMOVE ${remaining_variants} ${__REMOVELAYERS})
         
         get_filename_component(SOURCE_NAME "${__SOURCE}" NAME)
-        build_destination(BUILD_DESTINATION "${__SOURCE}" "-${file_id}")
-        add_xcf_file("${CMAKE_CURRENT_LIST_DIR}/${__SOURCE}" "mcpatcher/ctm/${DESTINATION}/${file_id}.png" "Rendering CTM texture ${SOURCE_NAME} (#${file_id})" "-${file_id}" ${variant_layers})
+        build_destination(BUILD_DESTINATION "${__SOURCE}" "-${file_id}" "${__TARGET}")
+        add_xcf_file("${CMAKE_CURRENT_LIST_DIR}/${__SOURCE}" "mcpatcher/ctm/${DESTINATION}/${file_id}.png" "Rendering CTM texture ${SOURCE_NAME} (#${file_id})" "-${file_id}" "${__TARGET}" ${variant_layers})
         list(APPEND BUILD_DESTINATIONS "${CMAKE_CURRENT_LIST_DIR}/${BUILD_DESTINATION}")
         
         add_tile_variant(${__TARGET} ${i} ${file_id})
@@ -201,7 +201,7 @@ endfunction()
 function(add_random_texture)
     
     set(OVA TARGET SOURCE PROPERTIES_FILE)
-    set(MVA VARIANTS)
+    set(MVA VARIANTS ADD_LAYERS REMOVE_LAYERS)
             
     cmake_parse_arguments(_ "" "${OVA}" "${MVA}" ${ARGN})
     
@@ -220,6 +220,8 @@ function(add_random_texture)
         SOURCE "${__SOURCE}"
         VARIANTS ${__VARIANTS}
         DESTINATION ${DESTINATIONS}
+        ADD_LAYERS ${__ADD_LAYERS}
+        REMOVE_LAYERS ${__REMOVE_LAYERS}
     )
     
     install(FILES "${CMAKE_CURRENT_LIST_DIR}/${__PROPERTIES_FILE}" DESTINATION "pack/assets/minecraft/mcpatcher/ctm/${__TARGET}/")

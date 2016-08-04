@@ -110,21 +110,21 @@ function(add_xcf_file_base _SOURCE _DESTINATION _COMMENT)
     
 endfunction()
 
-macro(build_destination _VAR _SOURCE _EXTRA)
+macro(build_destination _VAR _SOURCE _EXTRA _TARGET)
     
     get_filename_component("${_VAR}_SOURCE_NAME" "${_SOURCE}" NAME_WE)
     get_filename_component("${_VAR}_SOURCE_DIR" "${_SOURCE}" PATH)
     
-    set(${_VAR} "${${_VAR}_SOURCE_DIR}/build-${${_VAR}_SOURCE_NAME}${_EXTRA}.png")
+    set(${_VAR} "${${_VAR}_SOURCE_DIR}/build-${_TARGET}-${${_VAR}_SOURCE_NAME}${_EXTRA}.png")
     
 endmacro()
 
-function(add_xcf_file _SOURCE _DESTINATION _COMMENT _EXTRA_BUILD)
+function(add_xcf_file _SOURCE _DESTINATION _COMMENT _EXTRA_BUILD _TARGET)
     
     get_filename_component(DESTINATION_NAME "${_DESTINATION}" NAME)
     get_filename_component(DESTINATION_DIR "${_DESTINATION}" PATH)
     
-    build_destination(BUILD_DESTINATION "${_SOURCE}" "${_EXTRA_BUILD}")
+    build_destination(BUILD_DESTINATION "${_SOURCE}" "${_EXTRA_BUILD}" "${_TARGET}")
     
     add_xcf_file_base("${_SOURCE}" "${BUILD_DESTINATION}" "${_COMMENT}" ${ARGN})
     
@@ -174,9 +174,9 @@ function(add_texture)
         get_filename_component(SOURCE_EXT "${SRC}" EXT)
         
         if("${SOURCE_EXT}" STREQUAL ".xcf")
-            build_destination(BUILD_DESTINATION "${SRC}" "")
+            build_destination(BUILD_DESTINATION "${SRC}" "" "${__TARGET}")
             
-            add_xcf_file("${CMAKE_CURRENT_LIST_DIR}/${SRC}" "textures/${DST}" "Rendering texture ${SOURCE_NAME}" "")
+            add_xcf_file("${CMAKE_CURRENT_LIST_DIR}/${SRC}" "textures/${DST}" "Rendering texture ${SOURCE_NAME}" "" "${__TARGET}" )
             list(APPEND BUILD_DESTINATIONS "${CMAKE_CURRENT_LIST_DIR}/${BUILD_DESTINATION}")
         else()
             get_filename_component(DESTINATION_NAME "${DST}" NAME)
@@ -195,7 +195,7 @@ endfunction()
 function(add_texture_variants)
 
     set(OVA TARGET SOURCE)
-    set(MVA VARIANTS DESTINATION)
+    set(MVA VARIANTS DESTINATION ADD_LAYERS REMOVE_LAYERS)
     
     cmake_parse_arguments(_ "" "${OVA}" "${MVA}" ${ARGN})
     
@@ -222,14 +222,14 @@ function(add_texture_variants)
         
         request_layer_list(OUTPUT_VARIABLE variant_layers
             LAYER_LIST ${LAYERS}
-            ADD ${VARIANT}
-            REMOVE ${remaining_variants})
+            ADD ${VARIANT} ${__ADD_LAYERS}
+            REMOVE ${remaining_variants} ${__REMOVE_LAYERS})
             
         
         get_filename_component(SOURCE_NAME "${__SOURCE}" NAME)
-        build_destination(BUILD_DESTINATION "${__SOURCE}" "-${i}")
+        build_destination(BUILD_DESTINATION "${__SOURCE}" "-${i}" "${__TARGET}")
         
-        add_xcf_file("${CMAKE_CURRENT_LIST_DIR}/${__SOURCE}" "textures/${DST}" "Rendering texture ${SOURCE_NAME} (${VARIANT})" "-${i}" ${variant_layers})
+        add_xcf_file("${CMAKE_CURRENT_LIST_DIR}/${__SOURCE}" "textures/${DST}" "Rendering texture ${SOURCE_NAME} (${VARIANT})" "-${i}" "${__TARGET}" ${variant_layers})
         list(APPEND BUILD_DESTINATIONS "${CMAKE_CURRENT_LIST_DIR}/${BUILD_DESTINATION}")
         
     endforeach()
