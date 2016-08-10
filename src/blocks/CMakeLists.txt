@@ -38,3 +38,44 @@ add_random_texture(TARGET random_brick_nether_red
     VARIANTS ^bricks1$ ^bricks2$ ^bricks3$ ^bricks4$ ^bricks5$
     ADD_LAYERS redbrick$
     REMOVE_LAYERS nether$)
+    
+add_texture_variants(TARGET hardened_clay
+    SOURCE hardened_clay.xcf
+    VARIANTS 
+        ^base
+        ^black
+        ^red
+        ^green
+        ^brown
+        ^blue
+        ^purple
+        ^cyan
+        ^light_gray
+        ^gray 
+        ^pink
+        ^lime
+        ^yellow
+        ^light_blue
+        ^magenta
+        ^orange
+        ^white
+    DESTINATION
+        blocks/hardened_clay.png
+        blocks/hardened_clay_stained_black.png
+        blocks/hardened_clay_stained_red.png
+        blocks/hardened_clay_stained_green.png
+        blocks/hardened_clay_stained_brown.png
+        blocks/hardened_clay_stained_blue.png
+        blocks/hardened_clay_stained_purple.png
+        blocks/hardened_clay_stained_cyan.png
+        blocks/hardened_clay_stained_silver.png
+        blocks/hardened_clay_stained_gray.png
+        blocks/hardened_clay_stained_pink.png
+        blocks/hardened_clay_stained_lime.png
+        blocks/hardened_clay_stained_yellow.png
+        blocks/hardened_clay_stained_light_blue.png
+        blocks/hardened_clay_stained_magenta.png
+        blocks/hardened_clay_stained_orange.png
+        blocks/hardened_clay_stained_white.png
+)
+    
